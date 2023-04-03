@@ -1,0 +1,5 @@
+/node_modules
+/module
+/api
+.env
+mongo.config.js
