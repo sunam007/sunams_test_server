@@ -31,7 +31,7 @@ async function run() {
 
     app.get("/blogs", async (req, res) => {
       const query = {};
-      const cursor = blogsCollection.find(query);
+      const cursor = blogsCollection.find(query).limit(2);
       const result = await cursor.toArray();
       res.send(result);
     });
