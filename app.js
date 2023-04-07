@@ -20,9 +20,18 @@ async function run() {
       .db("healthDirect")
       .collection("doctorsInformation");
 
+    const blogsCollection = client.db("healthDirect").collection("blogPosts");
+
     app.get("/doctors", async (req, res) => {
       const query = {};
       const cursor = doctorsCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
+    app.get("/blogs", async (req, res) => {
+      const query = {};
+      const cursor = blogsCollection.find(query);
       const result = await cursor.toArray();
       res.send(result);
     });
