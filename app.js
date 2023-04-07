@@ -19,11 +19,20 @@ async function run() {
     const doctorsCollection = client
       .db("healthDirect")
       .collection("doctorsInformation");
-    const query = {};
 
     app.get("/doctors", async (req, res) => {
+      const query = {};
       const cursor = doctorsCollection.find(query);
       const result = await cursor.toArray();
+      res.send(result);
+    });
+
+    app.post("/doctorsByFilter", async (req, res) => {
+      const query = req.body ? req.body : {};
+      console.log(query);
+      const cursor = doctorsCollection.find(query);
+      const result = await cursor.toArray();
+      console.log(result);
       res.send(result);
     });
   } finally {
